@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Typography, Box, Button } from '@mui/material';
 import './App.css';
 import { Link } from 'react-router-dom';
+import background from './assets/background.jpg';
 
 function App() {
   const fileInputRef = useRef(null);
@@ -60,23 +61,27 @@ function App() {
   };
 
   return (
+    
     <Box
       sx={{
+        backgroundImage: `url(${background})`, // Set the background image here
+        backgroundSize: 'cover', // Adjust the background image size
+        backgroundPosition: 'center', // Center the background image
         backgroundColor: 'rgba(255, 255, 255, 0.5)',
         padding: '2rem',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '30vh',
+        height: '86vh',
       }}
     >
       <div id='header'>
-        <Typography variant="h1" align="center" sx={{ marginTop: '5rem' }}>
+        <Typography variant="h1" align="center" sx={{ marginTop: '0.5rem', fontSize: "10rem" }}>
           ByteBit
         </Typography>
-        <Typography variant="h4" align="center" sx={{ marginTop: '2rem' }}>
-          A simple file compression tool
+        <Typography variant="h4" align="center" sx={{ marginTop: '0.5rem' }}>
+          A simple file compression software
         </Typography>
       </div>
 
@@ -87,19 +92,19 @@ function App() {
         onChange={handleFileInputChange}
       />
 
-      <Button onClick={handleButtonClick}>
+      <Button onClick={handleButtonClick} sx={{ fontSize: "2rem"}}>
         Add Media
       </Button>
       {/**Display that the media is added successfully and a TICK MARK */}
       <div id='mediaAdded'>
         {mediaAdded && (
-          <Typography variant="h12" color="green" align="center" sx={{ marginTop: '2rem' }}>
+          <Typography variant="h12" color="green" align="center" sx={{ marginTop: '0.1rem', fontSize:"1.2rem" }}>
             Media added successfully
           </Typography>
         )}
       </div>
 
-      <Typography variant="h12" align="center" sx={{ marginTop: '2rem' }}>
+      <Typography variant="h12" align="center" sx={{ marginTop: '0.1rem' }}>
         Add your media file, in .txt, .docx format only
       </Typography>
 
