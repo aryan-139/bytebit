@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Typography, Box, Button } from '@mui/material';
 import './App.css';
 import { Link } from 'react-router-dom';
@@ -7,6 +7,7 @@ function App() {
   const fileInputRef = useRef(null);
   const [mediaAdded, setMediaAdded]=useState(false);
 
+  // Handle file input changes
   const handleFileInputChange = async (e) => {
     const file = e.target.files[0];
 
@@ -34,6 +35,24 @@ function App() {
       console.error('Error:', error);
     }
   };
+
+  //Handle compress button
+  function handleCompress() {
+    console.log('Compress button clicked');
+    fetch('http://localhost:3001/api/compress', {
+      method: 'POST',
+      
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Response:', data);
+        // Handle the response from the server here
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        // Handle any errors that occur during the API call
+      });
+  } 
 
   const handleButtonClick = () => {
     // Trigger the hidden input element when the button is clicked
@@ -87,6 +106,7 @@ function App() {
       <Box sx={{ marginTop: '1rem', display: 'flex', alignItems: 'center' }}>
         <Button
           variant="contained"
+          onClick={handleCompress}
           color="primary"
           component={Link}
           to="/compressed"

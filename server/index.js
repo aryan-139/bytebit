@@ -25,7 +25,6 @@ app.use(cors());
 //routes
 app.use('/api/upload', uploadRoute);
 app.use('/api/compress', compressRoute);
-app.use('/api/compress/download', compressRoute);
 app.use('/api/decompress', decompressRoute);
 
 //define the media addition and compression routes here 

@@ -6,6 +6,7 @@ router.post('/', (req, res) => {
   // Check if media is added and extract text from attached docx or txt file
   // Perform Huffman compression on the text and store it somewhere
   // Respond with success message or appropriate error response
+  console.log('Compression route hit');
 });
 
 router.get('/download', (req, res) => {
