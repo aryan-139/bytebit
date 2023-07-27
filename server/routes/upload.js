@@ -21,12 +21,18 @@ router.post('/', upload.single('file'), (req, res) => {
     if (!req.file) {
       return res.status(400).json({ error: 'No file received' });
     }
+
+    {/**Uncomment this code if you want to restrict the file types that can be uploaded*/} 
+
+    // const allowedMimeTypes = ['text/plain', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+    // if (!allowedMimeTypes.includes(req.file.mimetype)) {
+    //   return res.status(400).json({ error: 'Invalid file format. Only .txt and .docx files are allowed.' });
+    // }
   
     // You can now access the file details from req.file
     console.log('Received file:', req.file);
   
     // Perform any additional operations or pass the file to your compression logic here
-  
     return res.status(200).json({ message: 'File uploaded successfully' });
   
 });
