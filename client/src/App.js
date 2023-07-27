@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Typography, Box, Button } from '@mui/material';
 import './App.css';
 import { Link } from 'react-router-dom';
