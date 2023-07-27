@@ -15,8 +15,9 @@ function App() {
       formData.append('file', file);
       //for testing only 
       setMediaAdded(true);
+      console.log('File uploaded successfully');
 
-      const response = await fetch('/api/upload', {
+      const response = await fetch('http://localhost:3001/api/upload', {
         method: 'POST',
         body: formData,
       });
@@ -67,7 +68,7 @@ function App() {
         onChange={handleFileInputChange}
       />
 
-      <Button startDecorator onClick={handleButtonClick}>
+      <Button onClick={handleButtonClick}>
         Add Media
       </Button>
       {/**Display that the media is added successfully and a TICK MARK */}

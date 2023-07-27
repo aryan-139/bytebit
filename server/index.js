@@ -1,13 +1,17 @@
+// Desc: This is the main server file that will run the server and handle all the routes
 const express=require('express');
 const app=express();
 const cors=require('cors');
+
+
+//import routes
 const bodyParser=require('body-parser');
 const uploadRoute = require('./routes/upload');
 const compressRoute = require('./routes/compress');
 const decompressRoute = require('./routes/decompress');
 
+//define the port
 const port=3001;
-
 
 //server is now running
 app.listen(port, () => {
