@@ -1,14 +1,8 @@
-import { Box, Card, CardContent, Divider, TextField, Typography } from '@mui/material'
+import { Box, CardContent, Divider, TextField, Typography } from '@mui/material'
 import React from 'react'
 import CustomButton from '../components/CustomButtonHelper';
-import styled from 'styled-components';
-
-const GradientBackground = styled.div`
-  background: linear-gradient(135deg, #f5f5f5, #f0f0f0);
-  height: 100vh;
-`;
-
-
+import GradientBackground from '../components/GradientBackgroundWhite';
+import RoundedCard from '../components/RoundedCardHelper';
 
 const Compressed = () => {
 
@@ -58,17 +52,17 @@ const Compressed = () => {
         {/**Render 8 cards */}
         <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', marginTop: '3rem', gap: '3rem', marginRight:'8rem', marginLeft:'8rem'}}>
         {sampleData.map((item, index) => (
-        <Card key={index} sx={{ height: '125px', width: '200px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-          <CardContent>
-            {/* Customize the card content with the data */}
-            <Typography variant="h5" component="h2">
-              {item.title}
-            </Typography>
-            <Typography color="textSecondary">
-              {item.values}
-            </Typography>
-          </CardContent>
-           </Card>
+          <RoundedCard key={index}>
+            <CardContent>
+              {/* Customize the card content with the data */}
+              <Typography variant="h5" component="h2">
+                 {item.title}
+               </Typography>
+               <Typography color="textSecondary">
+                 {item.values}
+               </Typography>
+             </CardContent>
+           </RoundedCard>
            ))}
           </Box>
 
