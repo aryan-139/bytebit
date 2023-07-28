@@ -3,38 +3,15 @@ import { Typography, Box, Button } from '@mui/material';
 import './App.css';
 import { Link } from 'react-router-dom';
 import background from './assets/background.jpg';
+import handleFileInputChange from './api/fileInputHandler';
 
 function App() {
   const fileInputRef = useRef(null);
   const [mediaAdded, setMediaAdded]=useState(false);
 
   // Handle file input changes
-  const handleFileInputChange = async (e) => {
-    const file = e.target.files[0];
-
-    try {
-      const formData = new FormData();
-      formData.append('file', file);
-      //for testing only 
-      setMediaAdded(true);
-      console.log('File uploaded successfully');
-
-      const response = await fetch('http://localhost:3001/api/upload', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (response.ok) {
-        // File uploaded successfully
-        setMediaAdded(true);
-        console.log('File uploaded successfully');
-      } else {
-        // Error occurred while uploading the file
-        console.error('Error uploading file');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
+  const handleFileInput=(e) => {
+    handleFileInputChange(e, setMediaAdded);
   };
 
   //Handle compress button
@@ -89,7 +66,7 @@ function App() {
         type="file"
         ref={fileInputRef}
         style={{ display: 'none' }}
-        onChange={handleFileInputChange}
+        onChange={handleFileInput}
       />
 
       <Button onClick={handleButtonClick} sx={{ fontSize: "2rem"}}>
