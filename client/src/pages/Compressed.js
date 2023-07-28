@@ -1,5 +1,14 @@
-import { Box, Button, Card, CardContent, Divider, TextField, Typography } from '@mui/material'
+import { Box, Card, CardContent, Divider, TextField, Typography } from '@mui/material'
 import React from 'react'
+import CustomButton from '../components/CustomButtonHelper';
+import styled from 'styled-components';
+
+const GradientBackground = styled.div`
+  background: linear-gradient(135deg, #f5f5f5, #f0f0f0);
+  height: 100vh;
+`;
+
+
 
 const Compressed = () => {
 
@@ -17,6 +26,7 @@ const Compressed = () => {
   ];
 
   return (
+    <GradientBackground>
     <div>
       <Typography variant="h4" align="center" sx={{ marginTop: '0.5rem', fontSize: '3rem', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)', letterSpacing: '2px' }}>
         Compressed
@@ -33,9 +43,13 @@ const Compressed = () => {
           sx={{ width: '80%', textAlign: 'center', marginBottom: '1rem' }}
         />
         {/**Download the compressed file*/}
-        <Button variant="contained" color="primary">
-          Download Compressed File
-        </Button>
+        <CustomButton
+        variant="contained"
+        color="primary"
+        sx={{ marginRight: '20px' }}
+      >
+      Download Compressed
+      </CustomButton>
         <Typography variant="h9" align="center" sx={{ marginTop: '1rem', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)', letterSpacing: '2px' }}>
           The download button will be disabled until the user uploads a file.
         </Typography>
@@ -66,6 +80,7 @@ const Compressed = () => {
         
       </Box>
     </div>
+    </GradientBackground>
   )
 }
 
