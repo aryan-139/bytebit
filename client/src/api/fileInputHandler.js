@@ -16,7 +16,8 @@ const handleFileInputChange = async (e, setMediaAdded) => {
   
       if (response.ok) {
         // File uploaded successfully
-        console.log('File uploaded successfully');
+        const data= await response.json();
+        console.log('File uploaded successfully', data.content);
       } else {
         // Error occurred while uploading the file
         console.error('Error uploading file');
