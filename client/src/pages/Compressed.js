@@ -1,6 +1,13 @@
 import { Box, Card, CardContent, Divider, TextField, Typography } from '@mui/material'
 import React from 'react'
 import CustomButton from '../components/CustomButtonHelper';
+import styled from 'styled-components';
+
+const GradientBackground = styled.div`
+  background: linear-gradient(135deg, #f5f5f5, #f0f0f0);
+  height: 100vh;
+`;
+
 
 
 const Compressed = () => {
@@ -19,6 +26,7 @@ const Compressed = () => {
   ];
 
   return (
+    <GradientBackground>
     <div>
       <Typography variant="h4" align="center" sx={{ marginTop: '0.5rem', fontSize: '3rem', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)', letterSpacing: '2px' }}>
         Compressed
@@ -72,6 +80,7 @@ const Compressed = () => {
         
       </Box>
     </div>
+    </GradientBackground>
   )
 }
 
