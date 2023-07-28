@@ -1,36 +1,36 @@
 import React, { useRef, useState } from 'react';
 import { Typography, Box, Button } from '@mui/material';
 import './App.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import background from './assets/background.jpg';
 import handleFileInputChange from './api/fileInputHandler';
+import { handleCompress } from './api/compressHandler';
 
 function App() {
   const fileInputRef = useRef(null);
   const [mediaAdded, setMediaAdded]=useState(false);
+  const navigate = useNavigate();
 
   // Handle file input changes
   const handleFileInput=(e) => {
     handleFileInputChange(e, setMediaAdded);
   };
 
-  //Handle compress button
-  function handleCompress() {
-    console.log('Compress button clicked');
-    fetch('http://localhost:3001/api/compress', {
-      method: 'POST',
-      
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Response:', data);
-        // Handle the response from the server here
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        // Handle any errors that occur during the API call
-      });
-  } 
+  // Handle the compress button click
+  const handleCompressButtonClick = async () => {
+    const parsedData = await handleCompress();
+    if (parsedData) {
+      // Successfully received parsed data, navigate to the compressed page
+      navigate('/compressed');
+    } else {
+      // Handle the case where the server response doesn't contain the expected data
+      console.error('Error: Invalid Response from the server');
+    }
+  };
+
+  //Handle the decompress button click
+
+ 
 
   const handleButtonClick = () => {
     // Trigger the hidden input element when the button is clicked
@@ -72,7 +72,7 @@ function App() {
       <Button onClick={handleButtonClick} sx={{ fontSize: "2rem"}}>
         Add Media
       </Button>
-      {/**Display that the media is added successfully and a TICK MARK */}
+      {/**Display that the media is added successfully*/}
       <div id='mediaAdded'>
         {mediaAdded && (
           <Typography variant="h12" color="green" align="center" sx={{ marginTop: '0.1rem', fontSize:"1.2rem" }}>
@@ -88,10 +88,8 @@ function App() {
       <Box sx={{ marginTop: '1rem', display: 'flex', alignItems: 'center' }}>
         <Button
           variant="contained"
-          onClick={handleCompress}
+          onClick={handleCompressButtonClick}
           color="primary"
-          component={Link}
-          to="/compressed"
           sx={{ marginRight: '20px' }}
         >
           Compress
