@@ -107,7 +107,7 @@ const Main = () => {
       </Link>
 
       {/**Copyright text */}
-    <Typography variant="body2" color="textSecondary" sx={{ marginTop: '6rem' }}>
+    <Typography variant="body2" color="white" sx={{ marginTop: '6rem' }}>
     © {new Date().getFullYear()} Aryan Raj. All rights reserved.
   </Typography>
     </MainContainer>

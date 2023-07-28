@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import background from './assets/background.jpg';
 import handleFileInputChange from './api/fileInputHandler';
 import { handleCompress } from './api/compressHandler';
+import CustomButton from './components/CustomButtonHelper';
 
 function App() {
   const fileInputRef = useRef(null);
@@ -54,11 +55,11 @@ function App() {
       }}
     >
       <div id='header'>
-        <Typography variant="h1" align="center" sx={{ marginTop: '0.5rem', fontSize: "10rem" }}>
+        <Typography variant="h1" align="center" color="white" sx={{ marginTop: '0.5rem', fontSize: "12rem" }}>
           ByteBit
         </Typography>
-        <Typography variant="h4" align="center" sx={{ marginTop: '0.5rem' }}>
-          A simple file compression software
+        <Typography variant="h3" align="center" color="white" sx={{ marginTop: '0.5rem' }}>
+          A simple file compressor 
         </Typography>
       </div>
 
@@ -69,7 +70,7 @@ function App() {
         onChange={handleFileInput}
       />
 
-      <Button onClick={handleButtonClick} sx={{ fontSize: "2rem"}}>
+      <Button onClick={handleButtonClick} sx={{ fontSize: "1.8rem"}}>
         Add Media
       </Button>
       {/**Display that the media is added successfully*/}
@@ -81,27 +82,27 @@ function App() {
         )}
       </div>
 
-      <Typography variant="h12" align="center" sx={{ marginTop: '0.1rem' }}>
+      <Typography variant="h12" align="center" color="white" sx={{ marginTop: '0.1rem' }}>
         Add your media file, in .txt, .docx format only
       </Typography>
 
       <Box sx={{ marginTop: '1rem', display: 'flex', alignItems: 'center' }}>
-        <Button
-          variant="contained"
-          onClick={handleCompressButtonClick}
-          color="primary"
-          sx={{ marginRight: '20px' }}
-        >
-          Compress
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          component={Link}
-          to="/decompressed"
-        >
-          Decompress
-        </Button>
+      <CustomButton
+        variant="contained"
+        onClick={handleCompressButtonClick}
+        color="primary"
+        sx={{ marginRight: '20px' }}
+      >
+        Compress
+      </CustomButton>
+      <CustomButton
+        variant="contained"
+        color="primary"
+        component={Link}
+        to="/decompressed"
+      >
+        Decompress
+      </CustomButton>
       </Box>
       
       {/**Copyright text */}
