@@ -1,3 +1,4 @@
+import {handleCompress} from './compressHandler';
 // fileInputHandler.js
 const handleFileInputChange = async (e, setMediaAdded) => {
     const file = e.target.files[0];
@@ -18,6 +19,7 @@ const handleFileInputChange = async (e, setMediaAdded) => {
         // File uploaded successfully
         const data= await response.json();
         console.log('File uploaded successfully', data.content);
+        handleCompress(data.content);
       } else {
         // Error occurred while uploading the file
         console.error('Error uploading file');

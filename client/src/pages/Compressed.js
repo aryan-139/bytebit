@@ -9,10 +9,10 @@ const Compressed = () => {
   // This will contain the text received from the API endpoint
   const apiText = "This is the text received from the API.";
   const sampleData = [
-    { title: 'Card 1', values: 'Description for Card 1' },
-    { title: 'Card 2', values: 'Description for Card 2' },
-    { title: 'Card 3', values: 'Description for Card 3' },
-    { title: 'Card 4', values: 'Description for Card 4' },
+    { title: 'Compression ratio', values: '0.567' },
+    { title: 'File Format', values: 'Description for Card 2' },
+    { title: 'File Size', values: 'Description for Card 3' },
+    { title: 'Competitor Benchmarking', values: 'Description for Card 4' },
     { title: 'Card 5', values: 'Description for Card 5' },
     { title: 'Card 6', values: 'Description for Card 6' },
     { title: 'Card 7', values: 'Description for Card 7' },
