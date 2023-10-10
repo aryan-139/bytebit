@@ -11,15 +11,21 @@ function App() {
   const fileInputRef = useRef(null);
   const [mediaAdded, setMediaAdded]=useState(false);
   const navigate = useNavigate();
+  const [data, setData] = useState(null); 
 
   // Handle file input changes
-  const handleFileInput=(e) => {
-    handleFileInputChange(e, setMediaAdded);
+  const handleFileInput = async (e) => {
+    const newData = await handleFileInputChange(e, setMediaAdded);
+    if (newData) {
+      setData(newData); // Set the "data" state with the parsed data
+    }
   };
+  //here the data is updated now
+  //console.log(data);
 
   // Handle the compress button click
   const handleCompressButtonClick = async () => {
-    const parsedData = await handleCompress();
+    const parsedData = await handleCompress(data, mediaAdded);
     if (parsedData) {
       // Successfully received parsed data, navigate to the compressed page
       navigate('/compressed');
@@ -28,7 +34,7 @@ function App() {
       console.error('Error: Invalid Response from the server');
     }
   };
-
+  
   //Handle the decompress button click
 
  
