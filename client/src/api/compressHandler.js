@@ -13,7 +13,6 @@ export async function handleCompress(data, mediaAdded) {
     if (response.ok) {
       const data = await response.json();
       console.log('Response:', data);
-      // Assuming the server responds with { parsedData: "..." }
       if (data.parsedData) {
         // Successfully received parsed data, return the parsed data
         return data.parsedData;
