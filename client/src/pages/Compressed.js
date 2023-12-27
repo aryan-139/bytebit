@@ -3,8 +3,6 @@ import React from 'react'
 import CustomButton from '../components/CustomButtonHelper';
 import GradientBackground from '../components/GradientBackgroundWhite';
 import { Card } from '@mui/material';
-
-
 const Compressed = () => {
   const compressed=JSON.parse(window.localStorage.getItem('compressedData'));
   
