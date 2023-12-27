@@ -31,7 +31,7 @@ router.get('/details',async (req,res)=>{
     charCount: charCount,
     tokenCount: tokenCount,
     vocabularySize: vocabulary,
-    compressedData: compressedData,
+    //compressedData: compressedData,
     compressionRatio: compressionRatioValue,
     timeToCompress: timeToCompressValue
   }

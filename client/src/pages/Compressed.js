@@ -15,19 +15,23 @@ const RoundedCard = styled(Card)`
 `;
 
 const Compressed = () => {
-
-  // This will contain the text received from the API endpoint
-  const apiText = "This is the text received from the API.";
+  const compressed=JSON.parse(window.localStorage.getItem('compressedData'));
+  
+  const apiText = compressed.data;
   const sampleData = [
-    { title: 'Card 1', values: 'Description for Card 1' },
-    { title: 'Card 2', values: 'Description for Card 2' },
-    { title: 'Card 3', values: 'Description for Card 3' },
-    { title: 'Card 4', values: 'Description for Card 4' },
-    { title: 'Card 5', values: 'Description for Card 5' },
-    { title: 'Card 6', values: 'Description for Card 6' },
-    { title: 'Card 7', values: 'Description for Card 7' },
-    { title: 'Card 8', values: 'Description for Card 8' },
+    { title: 'Word Count', values: compressed.wordCount },
+    { title: 'Character Count', values: compressed.charCount },
+    { title: 'Token Count', values: compressed.tokenCount },
+    { title: 'Vocabulary Size', values: compressed.vocabularySize },
+    { title: 'Compression Ratio', values: compressed.compressionRatio },
+    { title: 'Time to Compress(in sec.)', values: compressed.timeToCompress },
+    { title: 'Lossy Indicator', values: 'Lossless' },
+    { title: 'Compression Type', values: 'LZW Compression' },
   ];
+
+  const handleDownloadButtonClick = () => {
+    alert('Download button clicked');
+  };
 
   return (
     <GradientBackground>
@@ -51,33 +55,43 @@ const Compressed = () => {
         variant="contained"
         color="primary"
         sx={{ marginRight: '20px' }}
+        onClick={handleDownloadButtonClick}
       >
       Download Compressed
       </CustomButton>
-        <Typography variant="h9" align="center" sx={{ marginTop: '1rem', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)', letterSpacing: '2px' }}>
-          The download button will be disabled until the user uploads a file.
-        </Typography>
+        
         
         <Divider sx={{ marginTop: '1rem', marginBottom: '1rem', width: '100%' }} />
         {/**Render 8 cards */}
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', marginTop: '3rem', gap: '3rem', marginRight:'8rem', marginLeft:'8rem'}}>
-        {sampleData.map((item, index) => (
-          <RoundedCard key={index}>
-            <CardContent>
-              {/* Customize the card content with the data */}
-              <Typography variant="h5" component="h2">
-                 {item.title}
-               </Typography>
-               <Typography color="textSecondary">
-                 {item.values}
-               </Typography>
-             </CardContent>
-           </RoundedCard>
-           ))}
-          </Box>
+        <Box
+      sx={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        marginTop: '1.2rem',
+        marginLeft: '12rem', 
+        marginRight: '12rem', 
+        gap: '1rem', 
+        padding: '2rem', 
+      }}
+    >
+      {sampleData.map((item, index) => (
+        <Card key={index} sx={{ width: 300, borderRadius: 1, boxShadow: 3 }}>
+          <CardContent>
+            {/* Customize the card content with the data */}
+            <Typography variant="h6" component="div" sx={{ fontWeight: 'bold', mb: 1, justifyContent:"center" }}>
+              {item.title}
+            </Typography>
+            <Typography color="textSecondary" sx={{ fontSize: 14 }}>
+              {item.values}
+            </Typography>
+          </CardContent>
+        </Card>
+      ))}
+    </Box>
 
            {/**Copyright text */}
-        <Typography variant="body2" color="textSecondary" sx={{ marginTop: '6rem' }}>
+        <Typography variant="body2" color="textSecondary" sx={{ marginTop: '2rem' }}>
           © {new Date().getFullYear()} Aryan Raj. All rights reserved.
         </Typography>
 
