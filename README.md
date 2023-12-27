@@ -1,34 +1,61 @@
 # ByteBit-Huffman Coding Compression System Documentation
 
-The Huffman Coding Compression System is a software tool that utilizes the Huffman coding algorithm to compress and decompress files. Huffman coding is a popular lossless data compression algorithm that assigns variable-length codes to different characters based on their frequencies in the input file.
+This is a text analysis and compression system that leverages, among other things, the <strong> Lempel-Ziv-Welch (LZW) </strong> compression algorithm. 
+
+It also draws insights from the uploaded text media and displays relevant KPI's like the compression ratio, token count, etcetera.
 
 ## Table of Contents
 - [Introduction](#introduction)
 - [Features](#features)
 - [Installation](#installation)
-- [Usage](#usage)
-  - [Compressing a File](#compressing-a-file)
-  - [Decompressing a File](#decompressing-a-file)
-- [File Formats](#file-formats)
-- [Algorithm](#algorithm)
-- [Performance](#performance)
-- [Contributing](#contributing)
-- [License](#license)
+- [Gallery](#gallery)
 
 ## Introduction
 
-The Huffman Coding Compression System provides a means to compress files, reducing their size while preserving data integrity. It achieves this by using Huffman coding, a variable-length prefix coding technique that assigns shorter codes to more frequently occurring characters.
+The LZW (Lempel-Ziv-Welch) algorithm is a data compression algorithm that works by replacing repeated sequences of characters with shorter codes. It was published by Abraham Lempel, Jacob Ziv, and Terry Welch in 1984. The LZW algorithm is widely used in file compression formats such as GIF, TIFF, and UNIX compress.
 
 ## Features
 
-- Compresses files using the Huffman coding algorithm
-- Decompresses Huffman-encoded files back to their original form
-- Supports various file formats, including text files, images, and more
-- User-friendly command-line interface
+- [x] Compresses text files
+- [x] Decompresses text files
+- [x] Displays relevant text insights
+- [x] Download compressed files
+- [x] Download decompressed files
 
 ## Installation
 
-1. Clone the repository:
+1. Clone the repository
 
-   ```bash
-   git clone https://github.com/aryan-139/bytebit
+```
+https://github.com/aryan-139/bytebit.git
+```
+2. Install dependencies
+
+```
+cd client
+npm install
+
+cd server
+npm install
+```
+
+3. Run the App
+
+```
+cd client 
+npm run start 
+
+cd server 
+npm run start
+```
+
+## Gallery 
+
+![image](https://github.com/aryan-139/bytebit/blob/main/media/main.png)
+
+![image](https://github.com/aryan-139/bytebit/blob/main/media/compress.png)
+
+![image](https://github.com/aryan-139/bytebit/blob/main/media/media-added.png)
+
+![image](https://github.com/aryan-139/bytebit/blob/main/media/details.png)
+
