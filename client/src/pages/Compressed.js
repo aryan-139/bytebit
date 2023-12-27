@@ -3,16 +3,7 @@ import React from 'react'
 import CustomButton from '../components/CustomButtonHelper';
 import GradientBackground from '../components/GradientBackgroundWhite';
 import { Card } from '@mui/material';
-import styled from 'styled-components';
 
-const RoundedCard = styled(Card)`
-  border-radius: 20px; // Adjust the value to control the roundness of the corners
-  height: 125px;
-  width: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;
 
 const Compressed = () => {
   const compressed=JSON.parse(window.localStorage.getItem('compressedData'));
