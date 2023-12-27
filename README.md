@@ -51,11 +51,15 @@ npm run start
 
 ## Gallery 
 
+Landing Page
 ![image](https://github.com/aryan-139/bytebit/blob/main/media/main.png)
 
+Home Page
 ![image](https://github.com/aryan-139/bytebit/blob/main/media/compress.png)
 
+Media Added Indicator
 ![image](https://github.com/aryan-139/bytebit/blob/main/media/media-added.png)
 
+Details Page with all the relevant KPI's
 ![image](https://github.com/aryan-139/bytebit/blob/main/media/details.png)
 
