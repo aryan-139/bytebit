@@ -6,8 +6,8 @@ export async function handleCompress(data, mediaAdded) {
       return null;
     }
     //console.log('Compress button clicked');
-    const response = await fetch('http://localhost:3001/api/compress', {
-      method: 'POST',
+    const response = await fetch('http://localhost:3001/api/compress/details', {
+      method: 'GET',
     });
 
     if (response.ok) {
