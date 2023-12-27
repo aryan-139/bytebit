@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Typography, Box, Button } from '@mui/material';
 import './App.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import background from './assets/background.jpg';
 import handleFileInputChange from './api/fileInputHandler';
 import { handleCompress } from './api/compressHandler';
@@ -10,25 +10,31 @@ import CustomButton from './components/CustomButtonHelper';
 function App() {
   const fileInputRef = useRef(null);
   const [mediaAdded, setMediaAdded]=useState(false);
-  const navigate = useNavigate();
+  const [data, setData] = useState(null); 
 
   // Handle file input changes
-  const handleFileInput=(e) => {
-    handleFileInputChange(e, setMediaAdded);
+  const handleFileInput = async (e) => {
+    const newData = await handleFileInputChange(e, setMediaAdded);
+    if (newData) {
+      setData(newData); // Set the "data" state with the parsed data
+    }
   };
+  //here the data is updated now
+  //console.log(data);
 
   // Handle the compress button click
   const handleCompressButtonClick = async () => {
-    const parsedData = await handleCompress();
+    const parsedData = await handleCompress(data, mediaAdded);
     if (parsedData) {
-      // Successfully received parsed data, navigate to the compressed page
-      navigate('/compressed');
-    } else {
-      // Handle the case where the server response doesn't contain the expected data
-      console.error('Error: Invalid Response from the server');
+      //console.log(parsedData);
+      window.localStorage.setItem('compressedData',JSON.stringify(parsedData));
+      window.location.href = '/compressed';
+    }
+    else{
+      console.log("error");
     }
   };
-
+  
   //Handle the decompress button click
 
  

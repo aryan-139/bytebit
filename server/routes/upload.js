@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const fs=require('fs');
+const axios=require('axios');
 
 var data=null;
 //define the storage for the uploaded files
@@ -19,20 +20,27 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.post('/', upload.single('file'), (req, res) => {
-    console.log(req.file);
+    //console.log(req.file);
     if (!req.file) {
-      return res.status(400).json({ error: 'No file received' });
-    }
+      return res.status(400).json({ error: 'No file has been received' });
+    } 
 
   // Read the content of the uploaded media file (limitation: only .txt and .docx (text only) files are supported)
    const filePath = req.file.path;
     fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
       console.error('Error reading file:', err);
-      return res.status(500).json({ error: 'Error reading file' });
+      return res.status(500).json({ error: 'Error reading the file that was uploaded by the user' });
     }
-    console.log('File content:', data);
-    return res.status(200).json({ message: 'File uploaded successfully', content: data });
+    //console.log('File content:', data);
+    
+    //send the file content to the compression server
+    axios.post('http://localhost:3001/api/compress', {
+      data: data
+    })
+
+
+    res.status(200).json({ message: 'File uploaded successfully', content: data });
     
 
   });
