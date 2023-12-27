@@ -1,4 +1,3 @@
-import {handleCompress} from './compressHandler';
 // fileInputHandler.js
 const handleFileInputChange = async (e, setMediaAdded) => {
   const file = e.target.files[0];
