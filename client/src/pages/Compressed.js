@@ -3,6 +3,7 @@ import React from 'react'
 import CustomButton from '../components/CustomButtonHelper';
 import GradientBackground from '../components/GradientBackgroundWhite';
 import { Card } from '@mui/material';
+import JSZip from 'jszip';
 const Compressed = () => {
   const compressed=JSON.parse(window.localStorage.getItem('compressedData'));
   
@@ -20,13 +21,23 @@ const Compressed = () => {
 
   const handleDownloadButtonClick = async () => {
     const compressedDataArray=compressed.compressedData;
-    
+    const compressedU8 = new Uint8Array(compressedDataArray);
+    const blob = new Blob([compressedU8], { type: "application/octet-stream" });
+    const zip = new JSZip();
+    zip.file("compressed.bin", blob);
+
+    zip.generateAsync({ type: "blob" }).then(function (content) {
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(content);
+        link.download = "compressed.zip";
+        link.click();
+    });
+
     // const response = await fetch('http://localhost:3001/api/compress/download', {
     //   method: 'GET',
     // });
     // console.log(response);
    
-    alert('Download button clicked');
   };
 
   return (
