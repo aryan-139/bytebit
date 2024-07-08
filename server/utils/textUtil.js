@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 function getWordCount(text) {
     if (text == null) return 0;
     const words = text.split(' ');
@@ -63,9 +65,24 @@ function getWordCount(text) {
     const timeInSeconds = (endTime - startTime) / 1000; 
     return timeInSeconds;
     }
+ 
+    function downloadCompressedFile(originalText) {
+      const compressedText = compressText(originalText);
+      const compressedData = new Uint8Array(compressedText);
+      const blob = new Blob([compressedData], { type: 'application/octet-stream' });
+      const downloadLink = document.createElement('a');
+      downloadLink.href = URL.createObjectURL(blob);
+      downloadLink.download = 'compressed_data.zip';
+  
+      // Trigger a click on the link to start the download
+      downloadLink.click();
+  
+    
+  }
+  
 
   
-  module.exports = { getWordCount, getCharCount, vocabularySize, getTokenCount, compressText, compressionRatio,timeToCompress };
+  module.exports = { getWordCount, getCharCount, vocabularySize, getTokenCount, compressText, compressionRatio,timeToCompress, downloadCompressedFile };
 
   
 

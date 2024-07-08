@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const cors = require('cors');
 router.use(express.json());
-const {getWordCount, getCharCount,getTokenCount,vocabularySize,compressText,compressionRatio,timeToCompress}= require('../utils/textUtil'); 
+const {getWordCount, getCharCount,getTokenCount,vocabularySize,compressText,compressionRatio,timeToCompress,downloadCompressedFile}= require('../utils/textUtil'); 
 
 var data=null;
+var compressedDataGlobal=null;
 
 // Define the route to receive the data from the client
 router.post('/', (req, res) => {
@@ -22,6 +23,7 @@ router.get('/details',async (req,res)=>{
   const compressionRatioValue= await compressionRatio(data,compressedData);
   const timeToCompressValue= await timeToCompress(data);
   
+  compressedDataGlobal=compressedData;
 
 
   //create the response object
@@ -40,7 +42,8 @@ router.get('/details',async (req,res)=>{
 });
 
 router.get('/download', (req, res) => {
-  // Implement logic to serve the compressed media for download
+  downloadCompressedFile(data,res);
+  res.send('File downloaded');
 });
 
 module.exports = router;
