@@ -24,12 +24,11 @@ router.post('/', upload.single('file'), (req, res) => {
     if (!req.file) {
       return res.status(400).json({ error: 'No file has been received' });
     } 
-
+    console.log("file received");
   // Read the content of the uploaded media file (limitation: only .txt and .docx (text only) files are supported)
    const filePath = req.file.path;
     fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
-      console.error('Error reading file:', err);
       return res.status(500).json({ error: 'Error reading the file that was uploaded by the user' });
     }
     //console.log('File content:', data);

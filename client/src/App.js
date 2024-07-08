@@ -6,11 +6,21 @@ import background from './assets/background.jpg';
 import handleFileInputChange from './api/fileInputHandler';
 import { handleCompress } from './api/compressHandler';
 import CustomButton from './components/CustomButtonHelper';
+import sampleData from './data';
 
 function App() {
   const fileInputRef = useRef(null);
   const [mediaAdded, setMediaAdded]=useState(false);
-  const [data, setData] = useState(null); 
+  const [data, setData] = useState(null);
+  
+ function handleDownloadSampleClick(){
+    const element = document.createElement("a");
+    const file = new Blob([sampleData], {type: 'text/plain'});
+    element.href = URL.createObjectURL(file);
+    element.download = "sample.txt";
+    document.body.appendChild(element); // Required for this to work in FireFox
+    element.click();
+  };
 
   // Handle file input changes
   const handleFileInput = async (e) => {
@@ -91,6 +101,16 @@ function App() {
       <Typography variant="h12" align="center" color="white" sx={{ marginTop: '0.1rem' }}>
         Add your media file, in .txt, .docx format only
       </Typography>
+      <Typography
+      variant="h12"
+      align="center"
+      color="orange"
+      sx={{ marginTop: '0.1rem', textDecoration: 'underline', cursor: 'pointer' }}
+      component="a"
+      onClick={handleDownloadSampleClick}
+    >
+      Download your sample file here.
+    </Typography>
 
       <Box sx={{ marginTop: '1rem', display: 'flex', alignItems: 'center' }}>
       <CustomButton

@@ -19,6 +19,7 @@ const Compressed = () => {
     { title: 'Compression Type', values: 'LZW Compression' },
   ];
 
+  //data compression-> array -> convert to blob -> zip -> download
   const handleDownloadButtonClick = async () => {
     const compressedDataArray=compressed.compressedData;
     const compressedU8 = new Uint8Array(compressedDataArray);
@@ -32,11 +33,6 @@ const Compressed = () => {
         link.download = "compressed.zip";
         link.click();
     });
-
-    // const response = await fetch('http://localhost:3001/api/compress/download', {
-    //   method: 'GET',
-    // });
-    // console.log(response);
    
   };
 

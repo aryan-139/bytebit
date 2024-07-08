@@ -6,6 +6,7 @@ const cors=require('cors');
 
 //import routes
 const bodyParser=require('body-parser');
+
 const uploadRoute = require('./routes/upload');
 const compressRoute = require('./routes/compress');
 const decompressRoute = require('./routes/decompress');
@@ -19,7 +20,7 @@ app.listen(port, () => {
 });
   
 //middleware
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '10mb', extended: true }));
 app.use(cors());
 
 //routes

@@ -42,9 +42,8 @@ router.get('/details',async (req,res)=>{
     decompressedtext: decompressedtext
   }
   console.log(responseData);
-  setTimeout(() => {
-    res.json(responseData);
-  }, 3000);
+  res.json(responseData);
+
   // res.json(responseData);
 });
 
