@@ -19,10 +19,13 @@ const Compressed = () => {
   ];
 
   const handleDownloadButtonClick = async () => {
-    const response = await fetch('http://localhost:3001/api/compress/download', {
-      method: 'GET',
-    });
-    console.log(response);
+    const compressedDataArray=compressed.compressedData;
+    
+    // const response = await fetch('http://localhost:3001/api/compress/download', {
+    //   method: 'GET',
+    // });
+    // console.log(response);
+   
     alert('Download button clicked');
   };
 

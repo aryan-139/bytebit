@@ -5,7 +5,10 @@ export async function handleCompress(data, mediaAdded) {
       console.error('Error: No media added');
       return null;
     }
-    //console.log('Compress button clicked');
+    else{
+      console.log(data);
+    }
+    console.log('Compress button clicked');
     const response = await fetch('http://localhost:3001/api/compress/details', {
       method: 'GET',
     });

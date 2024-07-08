@@ -2,10 +2,12 @@ const express = require('express');
 const router = express.Router();
 const cors = require('cors');
 router.use(express.json());
-const {getWordCount, getCharCount,getTokenCount,vocabularySize,compressText,compressionRatio,timeToCompress,downloadCompressedFile}= require('../utils/textUtil'); 
+const {getWordCount, getCharCount,getTokenCount,vocabularySize,compressionRatio,timeToCompress,downloadCompressedFile}= require('../utils/textUtil'); 
+const {compressText,decompressText}= require('../utils/textCompression');
 
 var data=null;
 var compressedDataGlobal=null;
+const compressedArray=[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 270, null, null, null, null, null, 259, null, null, null, null, null, null, null, 268, 273, 273, null, null, null, null, null, null, 261, 263, 284, null, null, 269, null, 295, 262, 264, 285, null, 294, null, null, null, null, null, null, null, null, null, null, 260, 304, 278, null, null, 306, 308, null, null, null, null, 322, 285]
 
 // Define the route to receive the data from the client
 router.post('/', (req, res) => {
@@ -22,6 +24,7 @@ router.get('/details',async (req,res)=>{
   const compressedData= await compressText(data);
   const compressionRatioValue= await compressionRatio(data,compressedData);
   const timeToCompressValue= await timeToCompress(data);
+  const decompressedtext= await decompressText(compressedData);
   
   compressedDataGlobal=compressedData;
 
@@ -33,12 +36,16 @@ router.get('/details',async (req,res)=>{
     charCount: charCount,
     tokenCount: tokenCount,
     vocabularySize: vocabulary,
-    //compressedData: compressedData,
+    compressedData: compressedData,
     compressionRatio: compressionRatioValue,
-    timeToCompress: timeToCompressValue
+    timeToCompress: timeToCompressValue,
+    decompressedtext: decompressedtext
   }
   console.log(responseData);
-  res.json(responseData);
+  setTimeout(() => {
+    res.json(responseData);
+  }, 3000);
+  // res.json(responseData);
 });
 
 router.get('/download', (req, res) => {

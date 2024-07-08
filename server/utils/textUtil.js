@@ -1,4 +1,5 @@
 const fs = require('fs');
+const {compressText}= require('./textCompression');
 
 function getWordCount(text) {
     if (text == null) return 0;
@@ -25,32 +26,32 @@ function getWordCount(text) {
     return tokens.length;
   }
   
-  function compressText(originalText) {
-    if (originalText == null) return null;
+  // function compressText(originalText) {
+  //   if (originalText == null) return null;
   
-    let dictionary = {};
-    let nextCode = 256;
-    let result = [];
-    let currentPhrase = originalText[0];
+  //   let dictionary = {};
+  //   let nextCode = 256;
+  //   let result = [];
+  //   let currentPhrase = originalText[0];
   
-    for (let i = 1; i < originalText.length; i++) {
-      const char = originalText[i];
-      const phrase = currentPhrase + char;
+  //   for (let i = 1; i < originalText.length; i++) {
+  //     const char = originalText[i];
+  //     const phrase = currentPhrase + char;
   
-      if (dictionary[phrase] !== undefined) {
-        currentPhrase = phrase;
-      } else {
-        result.push(dictionary[currentPhrase]);
-        dictionary[phrase] = nextCode++;
-        currentPhrase = char;
-      }
-    }
+  //     if (dictionary[phrase] !== undefined) {
+  //       currentPhrase = phrase;
+  //     } else {
+  //       result.push(dictionary[currentPhrase]);
+  //       dictionary[phrase] = nextCode++;
+  //       currentPhrase = char;
+  //     }
+  //   }
   
-    // Add the last code to the result
-    result.push(dictionary[currentPhrase]);
+  //   // Add the last code to the result
+  //   result.push(dictionary[currentPhrase]);
   
-    return result;
-  }
+  //   return result;
+  // }
   
   function compressionRatio(originalText, compressedText) {
     const originalSize = getCharCount(originalText);
@@ -82,7 +83,7 @@ function getWordCount(text) {
   
 
   
-  module.exports = { getWordCount, getCharCount, vocabularySize, getTokenCount, compressText, compressionRatio,timeToCompress, downloadCompressedFile };
+  module.exports = { getWordCount, getCharCount, vocabularySize, getTokenCount, compressionRatio,timeToCompress, downloadCompressedFile };
 
   
 
