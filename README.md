@@ -1,4 +1,4 @@
-# ByteBit-Huffman Coding Compression System Documentation
+# ByteBit-LZW Compression System Documentation
 
 This is a text analysis and compression system that leverages, among other things, the <strong> Lempel-Ziv-Welch (LZW) </strong> compression algorithm. 
 
